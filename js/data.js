@@ -211,3 +211,9 @@ const subjects = [
     ]
   }
 ];
+const materias = subjects.map(materia => ({
+    ...materia,
+    nombre: materia.name,
+    icono: materia.icon,
+    modulos: materia.modules
+}));
