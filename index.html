@@ -4,103 +4,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#080b18">
     <title>EVA | Entorno Virtual de Aprendizaje</title>
-    <meta name="description" content="Plataforma educativa EVA para el aprendizaje virtual.">
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
 <body>
 
-    <!-- PANTALLA DE INICIO DE SESIÓN -->
-    <section id="login-screen" class="login-screen">
-        <div class="login-card">
+    <!-- PANTALLA DE INICIO DE SESION -->
+    <section id="login-screen">
+        <form id="login-form">
+            <h1>🚀 EVA</h1>
+            <p>ENTORNO VIRTUAL DE APRENDIZAJE</p>
 
-            <div class="logo">EVA</div>
+            <h2>Bienvenido al futuro del aprendizaje</h2>
 
-            <h1>Bienvenido a EVA</h1>
-            <p>Entorno Virtual de Aprendizaje</p>
+            <input
+                type="text"
+                id="username"
+                placeholder="Escribe tu nombre"
+                required
+            >
 
-            <form id="login-form">
-                <div class="input-group">
-                    <label for="username">Usuario</label>
-                    <input 
-                        type="text" 
-                        id="username" 
-                        placeholder="Ingresa tu nombre"
-                        required
-                    >
-                </div>
-
-                <div class="input-group">
-                    <label for="password">Contraseña</label>
-                    <input 
-                        type="password" 
-                        id="password" 
-                        placeholder="Ingresa tu contraseña"
-                        required
-                    >
-                </div>
-
-                <button type="submit" class="login-btn">
-                    Ingresar a EVA
-                </button>
-            </form>
-
-            <p class="login-footer">
-                Aprende, descubre y construye tu futuro.
-            </p>
-
-        </div>
+            <button type="submit">Ingresar a EVA</button>
+        </form>
     </section>
 
-    <!-- PLATAFORMA PRINCIPAL -->
-    <div id="app" class="app hidden">
+    <!-- APLICACION -->
+    <div id="app" class="hidden">
 
-        <!-- BARRA SUPERIOR -->
-        <header class="topbar">
-
-            <div class="brand">
-                <span class="brand-icon">🎓</span>
-                <span>EVA</span>
-            </div>
-
-            <div class="user-info">
-                <span id="user-name">Estudiante</span>
-                <button id="logout-btn" class="logout-btn">
-                    Cerrar sesión
-                </button>
-            </div>
-
+        <!-- CABECERA -->
+        <header class="card">
+            <h1>🚀 EVA</h1>
+            <p>Tu conocimiento, tu futuro.</p>
+            <p>Estudiante: <span id="user-name"></span></p>
         </header>
 
-        <!-- MENÚ DE NAVEGACIÓN -->
-        <aside class="sidebar">
-
-            <button class="nav-btn active" data-page="home">
-                🏠 Inicio
-            </button>
-
-            <button class="nav-btn" data-page="subjects">
-                📚 Asignaturas
-            </button>
-
-            <button class="nav-btn" data-page="progress">
-                📊 Mi progreso
-            </button>
-
-            <button class="nav-btn" data-page="diplomas">
-                🏆 Certificados
-            </button>
-
-        </aside>
+        <!-- MENU -->
+        <nav class="card">
+            <button onclick="mostrarInicio()">🏠 Inicio</button>
+            <button onclick="mostrarMaterias()">📚 Materias</button>
+            <button onclick="mostrarProgreso()">📊 Mi progreso</button>
+            <button onclick="mostrarDiplomas()">🏆 Certificados</button>
+        </nav>
 
         <!-- CONTENIDO PRINCIPAL -->
-        <main id="main-content" class="main-content">
+        <main id="main-content">
         </main>
+
+        <!-- PIE DE PAGINA -->
+        <footer class="card">
+            <p>© 2026 EVA - Entorno Virtual de Aprendizaje</p>
+            <p>Aprende. Practica. Supera tus límites.</p>
+        </footer>
 
     </div>
 
-    <!-- ARCHIVOS DE JAVASCRIPT -->
+    <!-- ARCHIVOS JAVASCRIPT -->
     <script src="js/data.js"></script>
     <script src="app.js"></script>
 
