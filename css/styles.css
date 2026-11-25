@@ -283,3 +283,528 @@ progress {
         max-width: 100%;
     }
 }
+
+/* =====================================
+   EVA - NUEVA PANTALLA PRINCIPAL
+   ===================================== */
+
+.eva-inicio {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 10px 0 25px;
+    color: #f4f5ff;
+}
+
+/* BANNER PRINCIPAL */
+
+.eva-hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    min-height: 300px;
+    padding: 35px;
+    overflow: hidden;
+    border-radius: 25px;
+    background:
+        radial-gradient(circle at 80% 20%, #6845b8 0%, transparent 35%),
+        linear-gradient(120deg, #101b3d, #25205d 60%, #38236d);
+    box-shadow: 0 15px 40px rgba(20, 10, 70, .3);
+}
+
+.eva-hero::before {
+    content: "";
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: rgba(104, 91, 255, .15);
+    right: 15%;
+    top: -100px;
+    filter: blur(15px);
+}
+
+.eva-hero-texto {
+    position: relative;
+    z-index: 2;
+    max-width: 570px;
+}
+
+.eva-etiqueta {
+    color: #a9a4ff;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.eva-hero h1 {
+    margin: 15px 0 5px;
+    font-size: clamp(27px, 5vw, 43px);
+    color: white;
+}
+
+.eva-hero h2 {
+    margin: 5px 0 15px;
+    color: #c5b7ff;
+    font-size: clamp(20px, 3vw, 28px);
+}
+
+.eva-hero p {
+    color: #e0e4ff;
+    line-height: 1.7;
+}
+
+.eva-boton-principal {
+    margin-top: 15px;
+    padding: 14px 23px;
+    border: none;
+    border-radius: 13px;
+    background: linear-gradient(100deg, #8870ff, #b15cff);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.eva-boton-principal:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(161, 106, 255, .4);
+}
+
+/* ILUSTRACION EDUCATIVA */
+
+.eva-hero-ilustracion {
+    position: relative;
+    width: 250px;
+    height: 230px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+}
+
+.eva-libro {
+    z-index: 2;
+    font-size: 100px;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,.3));
+    animation: eva-flotar 4s ease-in-out infinite;
+}
+
+.eva-orbita {
+    position: absolute;
+    border: 1px solid rgba(196, 181, 253, .45);
+    border-radius: 50%;
+}
+
+.eva-orbita-uno {
+    width: 190px;
+    height: 190px;
+}
+
+.eva-orbita-dos {
+    width: 230px;
+    height: 230px;
+    border-style: dashed;
+}
+
+.eva-flotante {
+    position: absolute;
+    z-index: 3;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 15px;
+    background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,255,255,.2);
+    backdrop-filter: blur(8px);
+    font-size: 25px;
+    animation: eva-flotar 3s ease-in-out infinite;
+}
+
+.eva-flotante-uno {
+    top: 15px;
+    right: 30px;
+}
+
+.eva-flotante-dos {
+    bottom: 20px;
+    right: 10px;
+    animation-delay: .5s;
+}
+
+.eva-flotante-tres {
+    bottom: 20px;
+    left: 10px;
+    animation-delay: 1s;
+}
+
+.eva-flotante-cuatro {
+    top: 15px;
+    left: 25px;
+    animation-delay: 1.5s;
+}
+
+@keyframes eva-flotar {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+/* FRASE MOTIVADORA */
+
+.eva-saludo-frase {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 17px 22px;
+    border: 1px solid rgba(151, 130, 255, .2);
+    border-radius: 16px;
+    background: linear-gradient(100deg, rgba(93, 70, 170, .2), rgba(38, 54, 104, .3));
+}
+
+.eva-saludo-frase span {
+    font-size: 27px;
+}
+
+.eva-saludo-frase p {
+    margin: 0;
+    color: #dedaff;
+}
+
+/* SECCIONES */
+
+.eva-seccion {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.eva-titulo-seccion {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.eva-titulo-seccion h2 {
+    margin: 5px 0 0;
+    color: #fff;
+    font-size: 23px;
+}
+
+.eva-icono-titulo {
+    font-size: 28px;
+}
+
+.eva-enlace {
+    border: none;
+    background: transparent;
+    color: #b8a5ff;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* ESTADISTICAS */
+
+.eva-estadisticas {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.eva-estadistica {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 20px 15px;
+    border: 1px solid rgba(147, 128, 255, .17);
+    border-radius: 17px;
+    background: linear-gradient(145deg, #1b2546, #171a35);
+    transition: .3s;
+}
+
+.eva-estadistica:hover {
+    transform: translateY(-5px);
+    border-color: #8e79ff;
+}
+
+.eva-estadistica > span {
+    font-size: 30px;
+}
+
+.eva-estadistica strong {
+    display: block;
+    font-size: 25px;
+    color: #c6b8ff;
+}
+
+.eva-estadistica p {
+    margin: 3px 0 0;
+    color: #b8bfdc;
+    font-size: 12px;
+}
+
+/* PANEL DE PROGRESO */
+
+.eva-progreso-panel {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+    padding: 25px;
+    border-radius: 20px;
+    background: linear-gradient(110deg, #1c2850, #282050);
+    border: 1px solid rgba(151, 130, 255, .2);
+}
+
+.eva-progreso-circulo {
+    width: 145px;
+    height: 145px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: conic-gradient(
+        #a58bff var(--progreso),
+        #34365c 0
+    );
+    position: relative;
+}
+
+.eva-progreso-circulo::before {
+    content: "";
+    position: absolute;
+    width: 115px;
+    height: 115px;
+    border-radius: 50%;
+    background: #1d2142;
+}
+
+.eva-progreso-circulo div {
+    position: relative;
+    text-align: center;
+}
+
+.eva-progreso-circulo strong {
+    display: block;
+    font-size: 27px;
+    color: white;
+}
+
+.eva-progreso-circulo small {
+    color: #c5c6e8;
+}
+
+.eva-progreso-texto h3 {
+    color: white;
+    margin-top: 0;
+}
+
+.eva-progreso-texto p {
+    color: #c9cbea;
+    line-height: 1.6;
+}
+
+.eva-progreso-texto button,
+.eva-materia button,
+.eva-destacado button {
+    padding: 10px 16px;
+    border: 1px solid rgba(180, 163, 255, .4);
+    border-radius: 10px;
+    background: rgba(131, 106, 255, .2);
+    color: white;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.eva-progreso-texto button:hover,
+.eva-materia button:hover,
+.eva-destacado button:hover {
+    background: #7658df;
+}
+
+/* TARJETAS DE MATERIAS */
+
+.eva-materias-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 17px;
+}
+
+.inicio-materia {
+    padding: 22px;
+    border-radius: 18px;
+    background: linear-gradient(145deg, #202b4e, #191d39);
+    border: 1px solid rgba(143, 127, 255, .18);
+    transition: .3s;
+}
+
+.inicio-materia:hover {
+    transform: translateY(-6px);
+    border-color: #9b82ff;
+    box-shadow: 0 12px 25px rgba(0,0,0,.2);
+}
+
+.inicio-materia-icono {
+    display: grid;
+    place-items: center;
+    width: 55px;
+    height: 55px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #6252bc, #a34ed0);
+    font-size: 27px;
+}
+
+.inicio-materia h3 {
+    color: #fff;
+    font-size: 16px;
+    min-height: 40px;
+}
+
+.inicio-materia p {
+    color: #b9c0df;
+    font-size: 13px;
+}
+
+.inicio-materia button {
+    padding: 10px 13px;
+    width: 100%;
+    border: 0;
+    border-radius: 10px;
+    background: #6655bd;
+    color: white;
+    cursor: pointer;
+}
+
+/* TARJETAS DESTACADAS */
+
+.eva-destacados {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.eva-destacado {
+    padding: 22px;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,.1);
+    transition: .3s;
+}
+
+.eva-destacado:hover {
+    transform: translateY(-5px);
+}
+
+.eva-destacado > span {
+    font-size: 35px;
+}
+
+.eva-destacado h3 {
+    color: white;
+}
+
+.eva-destacado p {
+    color: #e0e0f3;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.eva-destacado-uno {
+    background: linear-gradient(135deg, #344b89, #463578);
+}
+
+.eva-destacado-dos {
+    background: linear-gradient(135deg, #514083, #753e88);
+}
+
+.eva-destacado-tres {
+    background: linear-gradient(135deg, #235a77, #35447e);
+}
+
+/* PIE DE PAGINA */
+
+.eva-pie-inicio {
+    padding: 25px;
+    text-align: center;
+    border-radius: 18px;
+    background: #151a34;
+    border: 1px solid rgba(151, 130, 255, .15);
+}
+
+.eva-pie-inicio h3 {
+    color: #c7b8ff;
+}
+
+.eva-pie-inicio p,
+.eva-pie-inicio span {
+    color: #aeb6d5;
+    font-size: 13px;
+}
+
+/* ADAPTACION A CELULARES */
+
+@media (max-width: 800px) {
+    .eva-estadisticas {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .eva-materias-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .eva-destacados {
+        grid-template-columns: 1fr;
+    }
+
+    .eva-hero {
+        padding: 25px;
+    }
+
+    .eva-hero-ilustracion {
+        width: 170px;
+        transform: scale(.8);
+    }
+}
+
+@media (max-width: 520px) {
+    .eva-hero {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 25px 20px;
+    }
+
+    .eva-hero-ilustracion {
+        align-self: center;
+        height: 180px;
+        margin-top: -5px;
+    }
+
+    .eva-estadistica {
+        padding: 14px 10px;
+        gap: 8px;
+    }
+
+    .eva-estadistica > span {
+        font-size: 23px;
+    }
+
+    .eva-estadistica strong {
+        font-size: 21px;
+    }
+
+    .eva-estadistica p {
+        font-size: 11px;
+    }
+
+    .eva-materias-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .eva-progreso-panel {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .eva-titulo-seccion h2 {
+        font-size: 20px;
+    }
