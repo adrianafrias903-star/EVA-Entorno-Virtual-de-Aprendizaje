@@ -217,27 +217,222 @@ document.addEventListener("DOMContentLoaded", function() {
 // INICIO
 // ==========================================
 
+
 function mostrarInicio() {
     const contenido = document.getElementById("main-content");
     if (!contenido) return;
 
     const totalMaterias = listaMaterias.length;
-    const totalModulos = totalMaterias * 5;
-    const completados = Object.values(progreso).filter(Boolean).length;
+
+    let totalModulos = 0;
+    let completados = 0;
+
+    listaMaterias.forEach(function(materia, indice) {
+        const modulos = obtenerModulos(materia);
+        totalModulos += modulos.length;
+
+        modulos.forEach(function(modulo, i) {
+            if (progreso[indice + "-" + i]) {
+                completados++;
+            }
+        });
+    });
+
+    const porcentaje = totalModulos > 0
+        ? Math.round((completados / totalModulos) * 100)
+        : 0;
+
+    const nombreEstudiante = usuario || "Estudiante";
+
+    const frases = [
+        "Cada día es una nueva oportunidad para aprender.",
+        "Tu esfuerzo de hoy construye tu futuro.",
+        "Aprender es descubrir todo lo que eres capaz de hacer.",
+        "Los grandes logros comienzan con pequeños pasos."
+    ];
+
+    const frase = frases[new Date().getDate() % frases.length];
+
+    let tarjetasMaterias = "";
+
+    listaMaterias.slice(0, 6).forEach(function(materia, indice) {
+        const nombre = obtenerNombreMateria(materia);
+        const modulos = obtenerModulos(materia);
+
+        const icono = materia.icono || materia.icon || "📚";
+
+        tarjetasMaterias += `
+            <article class="inicio-materia">
+                <div class="inicio-materia-icono">${escapar(icono)}</div>
+                <h3>${escapar(nombre)}</h3>
+                <p>${modulos.length} módulos disponibles</p>
+                <button onclick="mostrarModulos(${indice})">
+                    Explorar materia →
+                </button>
+            </article>
+        `;
+    });
 
     contenido.innerHTML = `
-        <section class="card">
-            <h2>¡Bienvenido a EVA, ${escapar(usuario)}!</h2>
-            <p>Tu espacio de aprendizaje está listo.</p>
-            <h3>Tu aprendizaje en números</h3>
-            <p>📚 Materias: ${totalMaterias}</p>
-            <p>📖 Módulos disponibles: ${totalModulos}</p>
-            <p>✅ Módulos aprobados: ${completados}</p>
-            <p>Continúa aprendiendo y completa tus actividades.</p>
-            <button onclick="mostrarMaterias()">Ver mis materias</button>
-        </section>
+        <div class="eva-inicio">
+
+            <section class="eva-hero">
+                <div class="eva-hero-texto">
+                    <span class="eva-etiqueta">✦ TU ESPACIO DE APRENDIZAJE</span>
+                    <h1>¡Hola, ${escapar(nombreEstudiante)}!</h1>
+                    <h2>Bienvenido a tu futuro.</h2>
+                    <p>
+                        Descubre, aprende, practica y alcanza nuevas metas.
+                        Tu aventura educativa comienza aquí.
+                    </p>
+                    <button onclick="mostrarMaterias()" class="eva-boton-principal">
+                        🚀 Comenzar a aprender
+                    </button>
+                </div>
+
+                <div class="eva-hero-ilustracion">
+                    <div class="eva-orbita eva-orbita-uno"></div>
+                    <div class="eva-orbita eva-orbita-dos"></div>
+                    <div class="eva-libro">📚</div>
+                    <div class="eva-flotante eva-flotante-uno">💡</div>
+                    <div class="eva-flotante eva-flotante-dos">💻</div>
+                    <div class="eva-flotante eva-flotante-tres">🎓</div>
+                    <div class="eva-flotante eva-flotante-cuatro">✨</div>
+                </div>
+            </section>
+
+            <section class="eva-saludo-frase">
+                <span>🌟</span>
+                <p>${escapar(frase)}</p>
+            </section>
+
+            <section class="eva-seccion">
+                <div class="eva-titulo-seccion">
+                    <div>
+                        <span class="eva-etiqueta">TU ACTIVIDAD</span>
+                        <h2>Mi espacio educativo</h2>
+                    </div>
+                    <span class="eva-icono-titulo">📊</span>
+                </div>
+
+                <div class="eva-estadisticas">
+                    <article class="eva-estadistica">
+                        <span>📚</span>
+                        <div>
+                            <strong>${totalMaterias}</strong>
+                            <p>Materias</p>
+                        </div>
+                    </article>
+
+                    <article class="eva-estadistica">
+                        <span>📖</span>
+                        <div>
+                            <strong>${totalModulos}</strong>
+                            <p>Módulos disponibles</p>
+                        </div>
+                    </article>
+
+                    <article class="eva-estadistica">
+                        <span>🏆</span>
+                        <div>
+                            <strong>${completados}</strong>
+                            <p>Módulos aprobados</p>
+                        </div>
+                    </article>
+
+                    <article class="eva-estadistica">
+                        <span>⭐</span>
+                        <div>
+                            <strong>${porcentaje}%</strong>
+                            <p>Progreso general</p>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="eva-seccion">
+                <div class="eva-titulo-seccion">
+                    <div>
+                        <span class="eva-etiqueta">SIGUE AVANZANDO</span>
+                        <h2>Mi progreso</h2>
+                    </div>
+                    <span class="eva-icono-titulo">🎯</span>
+                </div>
+
+                <div class="eva-progreso-panel">
+                    <div class="eva-progreso-circulo"
+                         style="--progreso:${porcentaje}%">
+                        <div>
+                            <strong>${porcentaje}%</strong>
+                            <small>Completado</small>
+                        </div>
+                    </div>
+
+                    <div class="eva-progreso-texto">
+                        <h3>¡Sigue aprendiendo!</h3>
+                        <p>
+                            Has aprobado ${completados} de ${totalModulos}
+                            módulos disponibles.
+                        </p>
+                        <p>
+                            Cada actividad te acerca más a tus objetivos.
+                        </p>
+                        <button onclick="mostrarProgreso()">
+                            Ver mi progreso →
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="eva-seccion">
+                <div class="eva-titulo-seccion">
+                    <div>
+                        <span class="eva-etiqueta">EXPLORA Y DESCUBRE</span>
+                        <h2>Mis materias</h2>
+                    </div>
+                    <button class="eva-enlace" onclick="mostrarMaterias()">
+                        Ver todas →
+                    </button>
+                </div>
+
+                <div class="eva-materias-grid">
+                    ${tarjetasMaterias}
+                </div>
+            </section>
+
+            <section class="eva-destacados">
+                <article class="eva-destacado eva-destacado-uno">
+                    <span>🧠</span>
+                    <h3>Aprende algo nuevo</h3>
+                    <p>Explora tus lecciones y descubre nuevos conocimientos.</p>
+                    <button onclick="mostrarMaterias()">Explorar materias</button>
+                </article>
+
+                <article class="eva-destacado eva-destacado-dos">
+                    <span>🎮</span>
+                    <h3>¡A practicar!</h3>
+                    <p>Resuelve actividades y demuestra lo que has aprendido.</p>
+                    <button onclick="mostrarMaterias()">Ir a actividades</button>
+                </article>
+
+                <article class="eva-destacado eva-destacado-tres">
+                    <span>🏅</span>
+                    <h3>Alcanza tus metas</h3>
+                    <p>Completa tus módulos y consigue tus certificados.</p>
+                    <button onclick="mostrarDiplomas()">Ver certificados</button>
+                </article>
+            </section>
+
+            <footer class="eva-pie-inicio">
+                <h3>🚀 EVA - Entorno Virtual de Aprendizaje</h3>
+                <p>Aprende. Practica. Descubre. Supera tus límites.</p>
+                <span>Tu conocimiento, tu futuro.</span>
+            </footer>
+
+        </div>
     `;
 }
+
 
 // ==========================================
 // MOSTRAR LAS 15 MATERIAS
